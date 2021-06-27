@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Contact Room</string>
+    <string name="name_hint_text">Enter Your Name</string>
+    <string name="occupation_hint_text">Your Occupation</string>
+    <string name="save_btn_text">Save</string>
+    <string name="add_contact_image">Image for add contact</string>
+    <string name="text_view">Text View</string>
 </resources>
