@@ -18,6 +18,7 @@ import java.util.concurrent.Executors;
 @Database(entities = {Contact.class}, version = 1,exportSchema = false)
 public abstract class ContactRoomDatabase extends RoomDatabase {
     public abstract ContactDao contactDao();
+
     public static final int NUMBER_OF_THREAD = 4;
 
     private static volatile ContactRoomDatabase INSTANCE;
