@@ -2,7 +2,6 @@ package com.example.contactroom;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.contactroom.adapter.RecyclerViewAdapter;
@@ -19,10 +17,12 @@ import com.example.contactroom.model.ContactViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.OnContactClickListener {
 
 
+    public static final String CONTACT_ID = "contact_id";
     private FloatingActionButton floatingActionButton;
     private ContactViewModel viewModel;
     private static final int REQUEST_CODE = 1;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getAllContact().observe(this,  contacts ->  {
 
             //Set up adapter
-            recyclerViewAdapter = new RecyclerViewAdapter(contacts,MainActivity.this);
+            recyclerViewAdapter = new RecyclerViewAdapter(contacts,MainActivity.this,this);
 
             //Setting adapter with recycler view
             recyclerView.setAdapter(recyclerViewAdapter);
@@ -81,5 +81,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    //Event Listener
+    @Override
+    public void onContactClick(int position) {
+        Contact contact = Objects.requireNonNull(viewModel.allContact.getValue()).get(position);
+        Intent intent = new Intent(MainActivity.this,NewContact.class);
+        intent.putExtra(CONTACT_ID,contact.getId());
+        startActivity(intent);
+
+
     }
 }

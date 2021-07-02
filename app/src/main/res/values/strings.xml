@@ -5,4 +5,7 @@
     <string name="save_btn_text">Save</string>
     <string name="add_contact_image">Image for add contact</string>
     <string name="text_view">Text View</string>
+    <string name="update_btn_text">UPDATE</string>
+    <string name="delete_btn_text">DELETE</string>
+    <string name="empty">Insert Required Info</string>
 </resources>
