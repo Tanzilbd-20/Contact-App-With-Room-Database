@@ -68,7 +68,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             name_txt = itemView.findViewById(R.id.row_name_text_view);
             occupation_txt = itemView.findViewById(R.id.row_occupation_text_view);
             this.onContactClickListener = onContactClickListener;
-
             itemView.setOnClickListener(this);
 
         }

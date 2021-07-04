@@ -1,6 +1,7 @@
 package com.example.contactroom;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -78,14 +79,14 @@ public class NewContact extends AppCompatActivity {
 
         //Updating Contact
         update_button.setOnClickListener(view -> {
-            int id = contactId;
+
             String name = name_edit_text.getText().toString();
             String occupation = occupation_edit_text.getText().toString();
             if(TextUtils.isEmpty(name) || TextUtils.isEmpty(occupation)){
                 Snackbar.make(name_edit_text,R.string.empty,Snackbar.LENGTH_SHORT).show();
             }else {
                 Contact contact = new Contact();
-                contact.setId(id);
+                contact.setId(contactId);
                 contact.setName(name);
                 contact.setOccupation(occupation);
                 ContactViewModel.update(contact);
@@ -95,6 +96,16 @@ public class NewContact extends AppCompatActivity {
         });
 
         delete_button.setOnClickListener(view -> {
+            String name = name_edit_text.getText().toString();
+            String occupation = occupation_edit_text.getText().toString();
+            if(TextUtils.isEmpty(name) || TextUtils.isEmpty(occupation)){
+                Snackbar.make(name_edit_text,R.string.empty,Snackbar.LENGTH_SHORT).show();
+            }else {
+                Contact contact = new Contact();
+                contact.setId(contactId);
+                ContactViewModel.deleteSingleContact(contact);
+                finish();
+            }
 
         });
 
